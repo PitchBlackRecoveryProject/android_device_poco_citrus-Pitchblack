@@ -15,6 +15,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_citrus.mk
+    $(LOCAL_DIR)/omni_juice.mk
 
-COMMON_LUNCH_CHOICES := omni_citrus-eng
+COMMON_LUNCH_CHOICES := omni_juice-eng

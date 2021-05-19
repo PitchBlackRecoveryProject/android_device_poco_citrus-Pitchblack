@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-DEVICE_PATH := device/poco/citrus
+DEVICE_PATH := device/poco/juice
 
 # Architecture
 TARGET_ARCH := arm64
@@ -71,7 +71,7 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := citrus
+TARGET_OTA_ASSERT_DEVICE := citrus,lime,lemon,pomelo
 
 # AVB
 BOARD_AVB_ENABLE := true

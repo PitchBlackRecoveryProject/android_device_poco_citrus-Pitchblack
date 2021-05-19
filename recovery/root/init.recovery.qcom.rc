@@ -72,6 +72,17 @@ service keystore_auth /sbin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
+service unified-script /sbin/unified-script.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+on boot
+    chmod 0777 /sbin/unified-script.sh
+    start unified-script
+
 # keystore is started and stopped on demand by TWRP
 service keystore /sbin/keystore /tmp/misc/keystore
     user root
