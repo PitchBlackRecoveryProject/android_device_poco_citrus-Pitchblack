@@ -135,3 +135,7 @@ PB_DISABLE_DEFAULT_TREBLE_COMP := true
 TW_INCLUDE_RESETPROP := true
 PB_TORCH_PATH := "/sys/class/leds/led:torch_0"
 
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+--prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+--prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
+
