@@ -135,3 +135,7 @@ TARGET_USES_MKE2FS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_BLANK := true
 PLATFORM_VERSION := 20.1.0
+
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+--prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+--prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
