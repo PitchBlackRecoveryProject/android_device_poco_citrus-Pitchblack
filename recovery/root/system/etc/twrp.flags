@@ -1,10 +1,22 @@
 # mount point	fstype	device											device2				flags
+
+/system 	ext4    	/dev/block/mapper/system 			    flags=display="System"
+vendor        	/vendor         ext4    	ro,barrier=1,discard                wait,logical,first_stage_mount
+product       	/product        ext4    	ro,barrier=1,discard                wait,logical,first_stage_mount
+system_ext    	/system_ext     ext4    	ro,barrier=1,discard                wait,logical,first_stage_mount
+
 # Other partitions
-/metadata	ext4	/dev/block/bootdevice/by-name/metadata											flags=display="Metadata";wrappedkey
-/firmware	vfat	/dev/block/bootdevice/by-name/modem										flags=display="Firmware";mounttodecrypt;fsflags="ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0"
-/recovery	emmc	/dev/block/bootdevice/by-name/recovery									flags=display="Recovery";backup=1;flashimg=1
-/cache		ext4	/dev/block/bootdevice/by-name/cache
+/metadata	ext4	/dev/block/bootdevice/by-name/metadata											flags=display="Metadata";backup=0;wrappedkey
+/metadata_image emmc    /dev/block/bootdevice/by-name/metadata											flags=display="Metadata_Image";backup=1;flashimg=1
+/firmware	vfat	/dev/block/bootdevice/by-name/modem											flags=display="Firmware";backup=0;mounttodecrypt;fsflags="ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0"
+/firmware_image emmc    /dev/block/bootdevice/by-name/modem											flags=display="Firmware_Image";backup=1;flashimg=1
+/recovery	emmc	/dev/block/bootdevice/by-name/recovery											flags=display="Recovery";backup=1;flashimg=1
+/cache		ext4	/dev/block/bootdevice/by-name/cache											flags=display="Cache";flashimg=0
+/misc		emmc    /dev/block/bootdevice/by-name/misc
 /boot		emmc	/dev/block/bootdevice/by-name/boot
+/splash		emmc    /dev/block/bootdevice/by-name/splash               flags=display="Boot Logo";backup=1;flashimg=1
+/data		f2fs    /dev/block/bootdevice/by-name/userdata				
+/storage        ext4    /data/media/0														flags=display="Internal Storage";usermrf;backup=1;fsflags="bind";removable
 
 # AVB partitions
 /dtbo		emmc	/dev/block/bootdevice/by-name/dtbo										flags=display="DTBO";backup=1;flashimg=1
@@ -13,7 +25,7 @@
 
 # Persistent Firmware & Properties
 /persist	ext4	/dev/block/bootdevice/by-name/persist 									flags=display="Persist";fsflags=ro
-/persist_image	emmc	/dev/block/bootdevice/by-name/persist 									flags=display="Persist";backup=1
+/persist_image	emmc	/dev/block/bootdevice/by-name/persist 									flags=display="Persist_Image";backup=1;flashimg=1
 
 # Modem partitions
 /modem		emmc	/dev/block/bootdevice/by-name/modem										flags=backup=1;display="Modem"
@@ -26,10 +38,11 @@
 /efsc		emmc	/dev/block/bootdevice/by-name/fsc										flags=backup=1;subpartitionof=/efs1
 /efsg		emmc	/dev/block/bootdevice/by-name/fsg										flags=backup=1;subpartitionof=/efs1
 
-
 # Xiaomi-Specific partitions
-/cust		ext4	/dev/block/bootdevice/by-name/cust
+/cust		ext4	/dev/block/bootdevice/by-name/cust											flags=display="Cust";backup=0
+/cust_image     emmc    /dev/block/bootdevice/by-name/cust											flags=display="Cust_Image";backup=1;flashimg=1
 
 # Removable storage
-/usb_otg	vfat    /dev/block/sdg1       									/dev/block/sdg		flags=fsflags=utf8;display="USB-OTG";storage;removable
-/external_sd	vfat    /dev/block/mmcblk0p1  									/dev/block/mmcblk0	flags=display="MicroSD";storage;removable
+/usb_otg	vfat    /dev/block/sdg1       									/dev/block/sdg		flags=fsflags=utf8;display="USB-Storage";wipeingui;storage;removable
+/sdcard1	vfat    /dev/block/mmcblk0p1  									/dev/block/mmcblk0	flags=display="MicroSD";wipeingui;storage;removable
+
