@@ -22,7 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 $(call inherit-product, vendor/pb/config/common.mk)
 
 # Inherit from juice
-$(call inherit-product, device/xiaomi/juice/device.mk)
+$(call inherit-product, device/poco/juice/device.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := juice
